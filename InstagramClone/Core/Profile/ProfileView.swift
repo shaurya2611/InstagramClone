@@ -47,7 +47,7 @@ struct ProfileView: View {
                     Button{
                         // to edit profile
                     }label: {
-                        INButton(label: "Edit Profile")
+                        INButton(label: "Edit Profile", forgroundColor: .black, backgroundColor: .white )
                     }
                     
                     // divider
