@@ -7,13 +7,17 @@
 
 import SwiftUI
 
+/* View -> Protocol (like interface in java)
+    View protocol has associatedtype declared imside it (Variable type declared in run time)
+    Some keyword help in encapusulation, i.e. hiding return type  
+*/
 struct MainTabview: View {
     var body: some View {
         TabView{
             FeedView()
                 .tabItem { Image(systemName: "house") }
             
-            Text("Home")
+            SearchView()
                 .tabItem { Image(systemName: "magnifyingglass") }
             
             Text("Home")
