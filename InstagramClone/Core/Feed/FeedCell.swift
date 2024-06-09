@@ -8,13 +8,18 @@
 import SwiftUI
 
 struct FeedCell: View {
+    
+    let post: Post
+    
     var body: some View {
         VStack(spacing: 5){
             // profile pic and name
             HStack(spacing: 5){
-                ProfilePicView(profilePic: "shauryadp", size: 40)
+                if let userPic = post.user.profileImageUrl{
+                    ProfilePicView(profilePic: userPic, size: 40)
+                }
                 
-                Text("shaurya")
+                Text(post.user.username)
                     .font(.footnote)
                     .fontWeight(.semibold)
                 
@@ -23,10 +28,11 @@ struct FeedCell: View {
             .padding(.leading,6)
             
             // user post
-            Image("guddi3")
+            Image(post.imageUrl)
                 .resizable()
-                .frame(width: .infinity, height: 400)
-                .clipShape(Rectangle())
+                .scaledToFill()
+                .frame(width: UIScreen.main.bounds.width, height: 400)
+                .clipped()
                 
             // like comments button
             HStack(spacing: 15){
@@ -57,7 +63,7 @@ struct FeedCell: View {
             .padding(.leading,6)
             
             //likes label
-            Text("23 likes")
+            Text("\(post.likes) likes")
                 .font(.footnote)
                 .fontWeight(.semibold)
                 .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, alignment: .leading)
@@ -65,15 +71,15 @@ struct FeedCell: View {
             
             //caption label
             HStack{
-                Text("guddi ").fontWeight(.semibold) +
-                Text("test caption")
+                Text(post.user.username).fontWeight(.semibold) +
+                Text(" \(post.caption)")
                 Spacer()
             }
             .font(.footnote)
             .padding(.leading,6)
          
             //likes label
-            Text("6hr ago")
+            Text("\(post.timeStamp)")
                 .font(.footnote)
                 .fontWeight(.semibold)
                 .foregroundStyle(Color(UIColor.systemGray2))
@@ -85,5 +91,5 @@ struct FeedCell: View {
 }
 
 #Preview {
-    FeedCell()
+    FeedCell(post: Post.POST_MOCKS[3])
 }

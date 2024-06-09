@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct User: Identifiable, Codable{
+struct User: Identifiable, Hashable ,Codable{
     let id: String // let as id will never change
     var username: String // var, as user can change username later
     var profileImageUrl: String? // optional as user can have image or not

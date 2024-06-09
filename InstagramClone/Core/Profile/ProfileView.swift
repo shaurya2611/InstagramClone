@@ -8,6 +8,17 @@
 import SwiftUI
 
 struct ProfileView: View {
+    
+    let user: User
+    
+    // filtering post from mock lits
+    var posts: [Post] {
+        return Post.POST_MOCKS.filter({ $0.user.username == user.username })
+    }
+    
+    // for image
+    let imageDimension: CGFloat = (UIScreen.main.bounds.width/3)-1
+    
     // it defines no of columns we want in pur grid
     let gridItem : [GridItem] = [
         .init(.flexible(),spacing: 1),
@@ -15,11 +26,7 @@ struct ProfileView: View {
         .init(.flexible(),spacing: 1),
     ]
     
-    let posts: [String] = [ "shaurya1", "shaurya2", "shaurya3", "shaurya4"]
-    
     var body: some View {
-        
-        NavigationStack {
             ScrollView {
                 VStack{
                     
@@ -28,7 +35,7 @@ struct ProfileView: View {
                         // pics and stats
                         HStack{
                             
-                            ProfilePicView(profilePic: "shauryadp", size: 80)
+                            ProfilePicView(profilePic: user.profileImageUrl!, size: 80)
                             
                             Spacer()
                             UserStatView(value: 1, title: "Post")
@@ -43,8 +50,13 @@ struct ProfileView: View {
                         
                         // Name and bio
                         VStack(alignment: .leading){
-                            Text("Shaurya Singh")
-                            Text("iOS Developer")
+                            if let fullName = user.fullName{
+                                Text(fullName)
+                            }
+                            if let bio = user.bio{
+                                Text(bio)
+                            }
+                            
                                
                         }
                         .font(.footnote).fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
@@ -74,9 +86,11 @@ struct ProfileView: View {
                     // posts grid view
                     LazyVGrid(columns: gridItem, content: {
                         ForEach(posts, id: \.self){post in
-                            Image("shaurya1")
+                            Image(post.imageUrl)
                                 .resizable()
-                                .scaledToFit()
+                                .scaledToFill()
+                                .frame(width: imageDimension, height: imageDimension)
+                                .clipped()
                         }
                     })
                             
@@ -84,24 +98,11 @@ struct ProfileView: View {
                     
                 }
             }
-            .navigationTitle("Profile")
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar{
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button{
-                        
-                    }label: {
-                        Image(systemName: "line.3.horizontal")
-                            .foregroundStyle(Color.primary)
-                    }
-                    
-                }
-            }
-        }
+            .padding(.top,10)
     }
 }
 
 #Preview {
-    ProfileView()
+    ProfileView(user: User.MOCK_USERS[0])
 }
     

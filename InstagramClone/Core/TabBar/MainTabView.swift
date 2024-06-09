@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct MainTabView: View {
+    
+    let currentUser: User
+    
     var body: some View {
         TabView {
             
@@ -21,7 +24,7 @@ struct MainTabView: View {
                     Image(systemName: "magnifyingglass")
                 }
             
-            Text("Home")
+            UploadPostView()
                 .tabItem {
                     Image(systemName: "plus.circle")
                 }
@@ -31,7 +34,7 @@ struct MainTabView: View {
                     Image(systemName: "heart")
                 }
             
-            ProfileView()
+            CurrentUserProfileView(user: currentUser)
                 .tabItem {
                     Image(systemName: "person")
                 }
@@ -41,5 +44,5 @@ struct MainTabView: View {
 }
 
 #Preview {
-    MainTabView()
+    MainTabView(currentUser: User.MOCK_USERS[0])
 }

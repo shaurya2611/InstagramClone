@@ -24,3 +24,4 @@ struct ProfilePicView: View {
 #Preview {
     ProfilePicView(profilePic: "vibhudp", size: 100)
 }
+
