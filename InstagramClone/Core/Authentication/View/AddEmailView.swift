@@ -1,5 +1,5 @@
 //
-//  CreateUsername.swift
+//  AddEmailView.swift
 //  InstagramClone
 //
 //  Created by Shaurya Singh on 06/06/24.
@@ -7,34 +7,35 @@
 
 import SwiftUI
 
-struct CreateUsername: View {
+struct AddEmailView: View {
     
-    @State private var username: String = ""
+    //Have used @EnvironmentObject to pass down RegistartionViewModel to all the subviews
+    @EnvironmentObject var viewModel: RegistrationViewModel
     @Environment(\.dismiss) var dismiss
     
     var body: some View {
         VStack(spacing: 10){
             
-            Text("Create Username")
+            Text("Add your email")
                 .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
                 .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                 .padding(.top)
             
-            Text("Pick an userbname for your new account. You can always change it later")
+            Text("You will use this email to sign in to your account")
                 .font(.subheadline)
                 .foregroundStyle(Color(UIColor.systemGray2))
                 .multilineTextAlignment(.center)
-                .padding(.bottom).padding(.horizontal)
+                .padding(.bottom)
     
             // Email text field
-            TextField("   Username",text: $username)
+            TextField("   Email",text: $viewModel.email)
                 .textInputAutocapitalization(.none)
                 .withDefaultTextFiledFormatting()
                 .padding(.bottom)
             
             //Navogation Link to next view
             NavigationLink {// NavigationLink(destination , label)
-                CreatePassword()
+                CreateUsername()
                     .navigationBarBackButtonHidden()
             } label: {
                 Text("Next")
@@ -54,9 +55,11 @@ struct CreateUsername: View {
                     
             }
         }
+        
+        
     }
 }
 
 #Preview {
-    CreateUsername()
+    AddEmailView()
 }

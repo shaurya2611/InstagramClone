@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MainTabView: View {
     
-    let currentUser: User
+    let currentUser: User = User.MOCK_USERS[0]
     
     var body: some View {
         TabView {
@@ -44,5 +44,5 @@ struct MainTabView: View {
 }
 
 #Preview {
-    MainTabView(currentUser: User.MOCK_USERS[0])
+    MainTabView()
 }

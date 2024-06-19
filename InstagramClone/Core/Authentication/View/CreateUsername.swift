@@ -1,40 +1,40 @@
 //
-//  CreatePassword.swift
+//  CreateUsername.swift
 //  InstagramClone
 //
-//  Created by Shaurya Singh on 07/06/24.
+//  Created by Shaurya Singh on 06/06/24.
 //
 
 import SwiftUI
 
-struct CreatePassword: View {
+struct CreateUsername: View {
     
-    @State private var password: String = ""
+    @EnvironmentObject var viewModel: RegistrationViewModel
     @Environment(\.dismiss) var dismiss
     
     var body: some View {
         VStack(spacing: 10){
             
-            Text("Create Password")
+            Text("Create Username")
                 .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
                 .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                 .padding(.top)
             
-            Text("Your password must be atleast 6 character in length")
+            Text("Pick an username for your new account. You can always change it later")
                 .font(.subheadline)
                 .foregroundStyle(Color(UIColor.systemGray2))
                 .multilineTextAlignment(.center)
                 .padding(.bottom).padding(.horizontal)
     
             // Email text field
-            TextField("   Password",text: $password)
+            TextField("   Username",text: $viewModel.username)
                 .textInputAutocapitalization(.none)
                 .withDefaultTextFiledFormatting()
                 .padding(.bottom)
             
             //Navogation Link to next view
             NavigationLink {// NavigationLink(destination , label)
-                CompleteSignUpView()
+                CreatePassword()
                     .navigationBarBackButtonHidden()
             } label: {
                 Text("Next")
@@ -58,5 +58,5 @@ struct CreatePassword: View {
 }
 
 #Preview {
-    CreatePassword()
+    CreateUsername()
 }

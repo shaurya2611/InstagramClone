@@ -1,48 +1,45 @@
 //
-//  AddEmailView.swift
+//  CompleteSignUpView.swift
 //  InstagramClone
 //
-//  Created by Shaurya Singh on 06/06/24.
+//  Created by Shaurya Singh on 07/06/24.
 //
 
 import SwiftUI
 
-struct AddEmailView: View {
+struct CompleteSignUpView: View {
     
-    @State private var email: String = ""
     @Environment(\.dismiss) var dismiss
+    @EnvironmentObject var viewModel: RegistrationViewModel
     
     var body: some View {
         VStack(spacing: 10){
             
-            Text("Add your email")
+            Text("Welcome to Instagram,")
                 .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
                 .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                 .padding(.top)
             
-            Text("You will use this email to sign in to your account")
+            Text(viewModel.username)
+                .font(.largeTitle).fontWeight(.heavy)
+                .foregroundStyle(LinearGradient(colors: [Color.red, Color.blue], startPoint: .leading, endPoint: .trailing))
+            
+            Text("Click below to complete registartion and start using instagram")
                 .font(.subheadline)
                 .foregroundStyle(Color(UIColor.systemGray2))
                 .multilineTextAlignment(.center)
-                .padding(.bottom)
+                .padding(.bottom).padding(.horizontal)
     
-            // Email text field
-            TextField("   Email",text: $email)
-                .textInputAutocapitalization(.none)
-                .withDefaultTextFiledFormatting()
-                .padding(.bottom)
             
-            //Navogation Link to next view
-            NavigationLink {// NavigationLink(destination , label)
-                CreateUsername()
-                    .navigationBarBackButtonHidden()
+            
+            Button {
+                Task{ try await viewModel.createUser() }
             } label: {
-                Text("Next")
+                Text("Complete Sign Up")
                     .withDefaultButtonFormatting()
             }
             // Above navigation link not needed to be placed inside the navigation stack as,we have after that path is fixed where user can navigate
             
-            Spacer()
         }
         .toolbar{
             ToolbarItem(placement: .topBarLeading) {
@@ -54,11 +51,9 @@ struct AddEmailView: View {
                     
             }
         }
-        
-        
     }
 }
 
 #Preview {
-    AddEmailView()
+    CompleteSignUpView()
 }
