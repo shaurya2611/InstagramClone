@@ -157,14 +157,14 @@
 		7B2B67F42C0EEF630059B493 /* InstagramClone */ = {
 			isa = PBXGroup;
 			children = (
-				7B2B683B2C159B2B0059B493 /* GoogleService-Info.plist */,
-				7B2B67F92C0EEF640059B493 /* Assets.xcassets */,
 				7B2B68032C0EEF8A0059B493 /* App */,
 				7B2B68072C0EEFAA0059B493 /* Core */,
 				7B2B68052C0EEF9B0059B493 /* Extensions */,
 				7B2B68062C0EEFA60059B493 /* Model */,
 				7B2B67FB2C0EEF640059B493 /* Preview Content */,
 				7B2B68082C0EEFB60059B493 /* Services */,
+				7B2B683B2C159B2B0059B493 /* GoogleService-Info.plist */,
+				7B2B67F92C0EEF640059B493 /* Assets.xcassets */,
 			);
 			path = InstagramClone;
 			sourceTree = "<group>";
