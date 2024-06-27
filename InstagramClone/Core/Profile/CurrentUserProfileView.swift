@@ -20,7 +20,7 @@ struct CurrentUserProfileView: View {
                 // hamburger button
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button{
-                        
+                        AuthService.shared.signOut()
                     }label: {
                         Image(systemName: "line.3.horizontal")
                             .foregroundStyle(Color.primary)
